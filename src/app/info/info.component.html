@@ -1,0 +1,19 @@
+<div><h3>Test Results for Keycloak Fine-grained Authorization Feature  </h3></div>
+<hr>
+<h5>Login with testuser/xxx</h5>
+<pre>
+  Click on Get Accounts -> Should work
+  Click on Add Accounts -> Should fail with HTTP 403
+</pre>
+<h5>Login with testadmin/xxx</h5>
+<pre>
+  Click on Get Accounts -> Should work
+  Click on Add Accounts -> Should work
+</pre>
+<h5>Implemented OIDC Features</h5>
+<ul>
+  <li>Using angular-auth-oidc-client lib 13.1 for Keylcloak Login</li>
+  <li>Implementing Autologin Feature from angular-auth-oidc-client</li>
+  <li>Implementing AuthInterceptor from angular-auth-oidc-client </li>
+  <li>Silent renew Access Tokens from angular-auth-oidc-client </li>
+</ul>

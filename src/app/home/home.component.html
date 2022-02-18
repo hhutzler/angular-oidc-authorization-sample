@@ -1,0 +1,18 @@
+<div><h3>Welcome to home Route - shows data from keycloak userData$ observable </h3></div>
+<hr>
+
+<pre>Is Authenticated: {{ isAuthenticated }}</pre>
+<pre>Username: {{ username }}</pre>
+<pre>OIDC configid: {{ configId }}</pre>
+<hr>
+<h5>JSON Data from userData$ Observable </h5>
+<pre>{{ userData$ | async | json }}</pre>
+
+<h5>Testing QuarkusRest APi </h5>
+<button type="button"
+        class="getAccounts"
+        (click)="accountService.getAccounts()">Get Accounts</button>
+<button type="button"
+        class="addAccount"
+        (click)="accountService.addAccount()">Add Accounts</button>
+<hr>
