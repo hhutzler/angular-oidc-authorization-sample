@@ -1,29 +1,31 @@
-# OidcAutologin
+# Oidc Sample to show Keycloak Authoriztation feature
 
 This project was generated with
-- [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
-- The new client library angular-auth-oidc-client  11.6.1 is used
-- This sample is based on autlogin sample from https://github.com/damienbod/angular-auth-oidc-client
-- This library contains fixes for Bugs
-  - https://github.com/damienbod/angular-auth-oidc-client/issues/973
-  - https://github.com/damienbod/angular-auth-oidc-client/pull/987
-  
-- For details read:  https://team.informatik.fh-nuernberg.de/confluence/display/OIDC/Autologin+sample+for+angular-auth-oidc-client 
+- [Angular CLI](https://github.com/angular/angular-cli) version 13.2
+- The new client library angular-auth-oidc-client  13.1 is used
 
+## In this sample the following OIDC features are used 
+-  angular-auth-oidc-client lib 13.1
+-  Uses AuthInterceptor of angular-auth-oidc-client 13.1
+-  Autologin Feature from angular-auth-oidc-client 13.1
+-  Uses Keycloak Fine-grained Authorization Feature 
 
-## Prerequisites ( works only if running at TH Nürnberg VPN)
+## Prerequisites 
 
-To runs this code you need a ready configured keycloak server up and  running.
-If connected to TH Nürnberg VPN you can start a keycloak server connecting to the local LPAP server by:
-- docker run -p 8087:8080 harbor.informatik.fh-nuernberg.de/hutzler/ldapdemo
+To runs this Angular Frontend code you need a ready configured keycloak ( see Part 1 ) and a quarkus server ( see Part 2) up and  running.
+- For Keycloak Setup read [Part 1: Keycloak Setup ](https://www.helikube.de/part-1-setup-for-keycloak-authorization-sample )
+- For Quarkus Setup read  [Part 2: Quarkus Setup ]( https://www.helikube.de/part-2-running-fine-grained-keycloak-authorization-feature-with-quarkus/)
+- For Angular App details read [Part 3: OIDC authorization Setup  ](https://www.helikube.de/part-3-running-an-odic-angular-app-to-test-keycloak-authorization-feature)
+
 
 ## Development server
+Initially Run `npm install`
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name --module app` to generate a new component. 
 
 ## Build
 
@@ -31,7 +33,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests
 
 ## Running end-to-end tests
 
