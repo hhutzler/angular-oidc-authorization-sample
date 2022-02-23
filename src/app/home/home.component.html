@@ -1,10 +1,11 @@
-<div><h3>Welcome to home Route - shows data from keycloak userData$ observable </h3></div>
+<h3>Welcome to home Route - shows data from keycloak userData$ observable </h3>
 <hr>
-
+<div>
 <pre>Is Authenticated: {{ isAuthenticated }}</pre>
 <pre>Username: {{ username }}</pre>
 <pre>OIDC configid: {{ configId }}</pre>
-<hr>
+    <pre>Default Roles: {{ defaultRoles }}</pre>
+    <hr>
 <h5>JSON Data from userData$ Observable </h5>
 <pre>{{ userData$ | async | json }}</pre>
 
@@ -16,3 +17,4 @@
         class="addAccount"
         (click)="accountService.addAccount()">Add Accounts</button>
 <hr>
+</div>

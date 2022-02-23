@@ -1,8 +1,6 @@
 import {Component, OnInit, OnDestroy, Injectable} from '@angular/core';
 import { OidcSecurityService, UserDataResult } from 'angular-auth-oidc-client';
 import {Observable, Subscription} from 'rxjs';
-import {HttpHeaders} from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import {MessageService} from "../message.service";
 import {AccountService} from "../account.service";
@@ -10,6 +8,7 @@ import {AccountService} from "../account.service";
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 
 export class HomeComponent implements OnInit, OnDestroy {
@@ -21,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   configId = null;
   username = null;
   logHeader= "";
+  defaultRoles = null;
 
   constructor(public oidcSecurityService: OidcSecurityService,
               private http: HttpClient,
@@ -59,40 +59,16 @@ export class HomeComponent implements OnInit, OnDestroy {
             // ...
           this.configId = userDataResult.allUserData[0].configId;
           this.username = userDataResult.allUserData[0].userData.preferred_username;
+          this.accountService.setPreferredUsername(this.username );
           this.email = userDataResult.allUserData[0].userData.email;
+          this.defaultRoles= userDataResult.allUserData[0].userData.default_roles;
           console.log('userDataResult.allUserData[0].configId       : ', this.configId);
           console.log('userDataResult.allUserData[0].userData.email : ', this.email);
         }
-/*
-        if ( userDataResult.userData != null ) {
-          // could get email also from userData Object
-          this.email2 = userDataResult.userData.email;
-          console.log('Alternative Data via userDataResult.userData.email : ', this.email2);
-        }
-        const token = this.oidcSecurityService.getAccessToken();
-        console.log(" ngOnInit()::token:  " + token);
-        const httpOptions = {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + token,
-          }),
-        };
-*/
         this.accountService.getAccounts();
-/*
-        this.http.get<any>('http://localhost:8080/accounts').subscribe(data => {
-          console.log('Got Data: ' + data);
-          for ( let key in data) {
-            if (data.hasOwnProperty (key )) {
-              this.messageService.add(this.logHeader + 'Rest Message: ' + data[key]);
-              console.log('---- Key: ' + key + ' --- Data: ' + data[key]);
-            }
-          }
-        });
 
- */
       }
     }));
-
 
     this.userData$ = this.oidcSecurityService.userData$;
   }

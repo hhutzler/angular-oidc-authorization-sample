@@ -13,29 +13,18 @@ export class AccountService {
               private http: HttpClient) { }
   private logHeader = ''
   private apiURL = 'http://localhost:8080';
-  /*
-  getAccounts() {
-    this.logHeader = 'AccountService:getAccounts():';
-    this.messageService.add(this.logHeader + 'Retrieving all Accounts' );
+  private preferredUsername = 'No User';
 
-    this.http.get<any>('http://localhost:8080/accounts').subscribe(data => {
-      console.log('Got Data: ' + data);
-      for ( let key in data) {
-        if (data.hasOwnProperty (key )) {
-          this.messageService.add(this.logHeader + 'Rest Message: ' + data[key]);
-          console.log('---- Key: ' + key + ' --- Data: ' + data[key]);
-        }
-      }
-    });
+  setPreferredUsername(user) {
+    this.preferredUsername =  user;
   }
-  */
 
   getAccounts() {
-    this.logHeader = 'AccountService:getAccounts()';
+    this.logHeader = '[ User: '  + this.preferredUsername +  ' AccountService:getAccounts()] ';
     this.messageService.add(this.logHeader + 'Getting all Accounts');
     this.getAccountsREST()
         .subscribe(data=> {
-          this.messageService.add('Retrieving all Accouts');
+          this.messageService.add(this.logHeader + 'Subscribe: Got all Accounts !');
           for (let key in data) {
             if (data.hasOwnProperty(key)) {
               this.messageService.add(this.logHeader + data[key]);
@@ -43,23 +32,23 @@ export class AccountService {
             }
           }
         });
-
   }
   getAccountsREST(): Observable<any> {
+    this.logHeader = '[ User: '  + this.preferredUsername +  ' AccountService:getAccountsREST()] ';
     let appUrl = this.apiURL + '/accounts'
     return this.http.get<any>(appUrl ).pipe(
-        tap((data:any) => this.messageService.add('REST: Retrievnga all Accounts')),
+        tap((data:any) => this.messageService.add(this.logHeader + ' Retrieving all Accounts')),
         // catchError takes in an input Observable, and outputs an Output Observable.
         catchError(this.handleError('getAccountsREST'))
     );
   }
 
   addAccount() {
-    this.logHeader = 'AccountService:addAccount():';
-    this.messageService.add(this.logHeader + 'Adding an Accounts');
+    this.logHeader = '[ User: '  + this.preferredUsername +  ' AccountService:addAccount()] ';
+    this.messageService.add(this.logHeader + 'Adding an Account');
     this.addAccountREST()
         .subscribe(data=> {
-              this.messageService.add('Account Added');
+              this.messageService.add(this.logHeader + ' Account Added!');
               for (let key in data) {
                 if (data.hasOwnProperty(key)) {
                   this.messageService.add(this.logHeader + data[key]);
@@ -71,10 +60,11 @@ export class AccountService {
   }
   addAccountREST(): Observable<any> {
     let appUrl = this.apiURL + '/accounts'
+    this.logHeader = '[ User: '  + this.preferredUsername +  ' AccountService:addAccountsREST()] ';
     return this.http.post<any>(appUrl,{title: 'Angular POST Request Example'} ).pipe(
-        tap((data:any) => this.messageService.add('REST: Account added ')),
+        tap((data:any) => this.messageService.add(this.logHeader + ' Account added ')),
           // catchError takes in an input Observable, and outputs an Output Observable.
-        catchError(this.handleError('addAccount'))
+        catchError(this.handleError(this.logHeader))
     );
   }
 
@@ -86,7 +76,6 @@ export class AccountService {
   * @param operation - name of the operation that failed
   */
   handleError(operation = 'operation' ) {
-
     return (error: any ) => {
       let errorMessage = 'Unknown error!';
       if (error.error instanceof ErrorEvent) {
@@ -101,5 +90,4 @@ export class AccountService {
       return throwError(() => error);
     }
   }
-
 }
