@@ -1,17 +1,16 @@
-# Oidc Sample to show Keycloak Authoriztation feature
+# Oidc Sample demonstrating  some of Keycloak/OIDC features
 
 This project was generated with
 - [Angular CLI](https://github.com/angular/angular-cli) version 13.2
-- The new client library angular-auth-oidc-client  13.1 is used
+- The OIDC reference library angular-auth-oidc-client  13.1 is used for keycloak communication
 
-## In this sample the following OIDC features are used 
--  angular-auth-oidc-client lib 13.1
--  Uses AuthInterceptor of angular-auth-oidc-client 13.1
--  Autologin Feature from angular-auth-oidc-client 13.1
--  Uses Keycloak Fine-grained Authorization Feature 
+## In this sample we are demonstrating the following OIDC features:
+-  Implements AuthInterceptor of angular-auth-oidc-client 13.1
+-  Implements Autologin Feature from angular-auth-oidc-client 13.1
+-  Implements Keycloak Fine-grained Authorization Feature 
+-  Implements Keycloak User Self-Registration Feature
 
-## Prerequisites 
-
+## Prerequisites
 To runs this Angular Frontend code you need a ready configured keycloak ( see Part 1 ) and a quarkus server ( see Part 2) up and  running.
 - For Keycloak Setup read [Part 1: Keycloak Setup ](https://www.helikube.de/part-1-setup-for-keycloak-authorization-sample )
 - For Quarkus Setup read  [Part 2: Quarkus Setup ]( https://www.helikube.de/part-2-running-fine-grained-keycloak-authorization-feature-with-quarkus/)
